@@ -1,1 +1,3 @@
-print("Hello, World :3")
+import time
+
+print(time.localtime())
