@@ -13,4 +13,4 @@ class List:
     def sort(self, sortType):
         match sortType:
             case "time":
-                self.nodes.sort(key )
+                self.nodes.sort(key)
