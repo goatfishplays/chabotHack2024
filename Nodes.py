@@ -1,4 +1,5 @@
 import time
+import json
 
 
 class Time:
@@ -29,6 +30,23 @@ class Node:
         self.completable = completable
         self.completion = completion
         self.time = time
+
+    def updateFile(self):
+        with open("./Nodes/" + self.name + ".json", "w") as f:
+            data = {"name": self.name, "notes": self.notes, "lists": tuple(self.lists), "shared": self.shared, "completable": self.completable, "completion": self.completion, "time": str(self.time)}
+            json.dump(data, f)
+
+    def loadFile(self, name):
+        with open("./Nodes/" + name + ".json", "r") as rawRead:
+            f = json.load(rawRead)
+            # print(f)
+            self.name = f["name"]
+            self.notes = f["notes"]
+            self.lists = set(f["lists"])
+            self.shared = f["shared"]
+            self.completable = f["completable"]
+            self.completion = f["completion"]
+            self.time = f["time"]
 
     def __str__(self):
         return f"{self.name}\t{self.notes}\t{self.lists}\t{self.shared}\t{self.completable}\t{self.completion}\t{self.time}"
@@ -74,3 +92,6 @@ if __name__ == "__main__":
     a.setRelativeTime(5, 5, 5)
     print(a.getRelativeTime())
     print(a.time)
+    a.updateFile()
+    a.loadFile("A Node")
+    print(a)
