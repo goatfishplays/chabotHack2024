@@ -27,6 +27,13 @@ def main_hub():
 
 
 def load_stuffs():
+    output = "All nodes and lists loaded"
+    
+    # Clear the pools before loading
+    NodeList.NodeList.nodePool = []
+    global list_pool 
+    list_pool = []
+
     # print(os.listdir("./NodeLists/"))
     for n in os.listdir("./Nodes/"):
         try:
