@@ -16,6 +16,7 @@ Allows the user to view and edit Lists and Nodes. Adding and removing Nodes from
 
 #### App Homepage.png
 A Figma Mockup of the homepage on Android.
+Icons created by Hidemaru - Flaticon
 
 #### NodesList - Folder
 Save location for lists
