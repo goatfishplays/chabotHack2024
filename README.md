@@ -11,11 +11,13 @@ And a figma mockup of the app homepage.
 
 ## File descriptions
 #### runner.py
-Runs a command line interface version of the chore tracker
+Runs a command line interface version of the chore tracker.
+
 Allows the user to view and edit Lists and Nodes. Adding and removing Nodes from Lists
 
 #### App Homepage.png
 A Figma Mockup of the homepage on Android.
+
 Icons created by Hidemaru - Flaticon
 
 #### NodesList - Folder
