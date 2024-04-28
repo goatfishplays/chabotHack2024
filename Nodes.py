@@ -129,7 +129,7 @@ class Node:
 # }
 
 if __name__ == "__main__":
-    # t = time.localtime() # This doesn't do anything
+    t = time.localtime() # This doesn't do anything
 
     a = Node("A Node", "This node is a node", set(), shared=False, completable=False, completion=0, time_hour=t.tm_hour, time_min=t.tm_min, time_sec=t.tm_sec)
     print(a.getRelativeTime())
