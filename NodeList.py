@@ -51,6 +51,7 @@ class NodeList:
                     self.nodes.append(NodeHolder(nTemp, userInd))
 
     def sort(self, sortType: str = "", reverse: bool = False):
+        # TODO: Add more sortTypes
         if sortType == "time":
             self.nodes.sort(key=lambda x: x.node.getTimeSecs())
         else:
@@ -89,25 +90,26 @@ class NodeList:
 
 
 if __name__ == "__main__":
-    a = Nodes.Node("thing", time_hour=8, time_min=8, time_sec=8)
-    thing = NodeList(
-        "A NodeList",
-        [
-            Nodes.Node("hats", lists={"klfja", "kajsdf;lka"}, time_hour=15, time_min=70, time_sec=20),
-            Nodes.Node("beans", time_hour=20, time_min=15, time_sec=10),
-            Nodes.Node("Cheese", time_hour=100, time_min=99, time_sec=7000),
-            a,
-            Nodes.Node("mmm"),
-        ],
-    )
-    thing2 = NodeList("B NodeList", [a, Nodes.Node("chee")])
-    print(thing)
-    thing.sort("time")
-    print(thing)
-    thing.updateFile()
-    print()
-    print(thing2)
+    pass
+    # a = Nodes.Node("thing", time_hour=8, time_min=8, time_sec=8)
+    # thing = NodeList(
+    #     "A NodeList",
+    #     [
+    #         Nodes.Node("hats", lists={"klfja", "kajsdf;lka"}, time_hour=15, time_min=70, time_sec=20),
+    #         Nodes.Node("beans", time_hour=20, time_min=15, time_sec=10),
+    #         Nodes.Node("Cheese", time_hour=100, time_min=99, time_sec=7000),
+    #         a,
+    #         Nodes.Node("mmm"),
+    #     ],
+    # )
+    # thing2 = NodeList("B NodeList", [a, Nodes.Node("chee")])
+    # print(thing)
+    # thing.sort("time")
+    # print(thing)
+    # thing.updateFile()
+    # print()
+    # print(thing2)
 
-    thingLoad = NodeList()
-    thingLoad.loadFile("A NodeList.json")
-    print(thingLoad)
+    # thingLoad = NodeList()
+    # thingLoad.loadFile("A NodeList.json")
+    # print(thingLoad)
