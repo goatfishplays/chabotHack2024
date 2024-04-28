@@ -1,3 +1,1 @@
-
-    thingLoad.loadFile("A List")
-    print(thingLoad)
+Nodes.Node
