@@ -6,24 +6,34 @@ list_pool: list[NodeList.NodeList] = []
 
 
 def main_hub():
+    load_stuffs()
     while True:
         print()
 
         print("Select an action")
         print("[1] Lists Menu")
         print("[2] Nodes Menu")
-        print("[3] Load Nodes and Lists")
+        print("[3] Reload Nodes and Lists")
         print("[-1] End")
-        choice = int(input())
-        match choice:
-            case 1:
-                lists_hub()
-            case 2:
-                nodes_hub()
-            case 3:
-                load_stuffs()
-            case -1:
-                return
+        
+        try:
+            choice = int(input())
+            print()
+            match choice:
+                case 1:
+                    lists_hub()
+                case 2:
+                    nodes_hub()
+                case 3:
+                    load_stuffs()
+                case -1:
+                    return
+        except KeyboardInterrupt:
+            print("KeyboardInterrupt detected")
+            print("Closing program")
+            return
+        except:
+            print("\n" + "Invalid input")
 
 
 def load_stuffs():
@@ -37,12 +47,12 @@ def load_stuffs():
     # print(os.listdir("./NodeLists/"))
     for n in os.listdir("./Nodes/"):
         try:
-            # print(n)
             tempN = Nodes.Node()
             tempN.loadFile(n)
             NodeList.NodeList.nodePool.append(tempN)
         except:
             print(f"Could not load {n}")
+            output = "Loading failed"
     for l in os.listdir("./NodeLists/"):
         try:
             tempNL = NodeList.NodeList()
@@ -50,6 +60,9 @@ def load_stuffs():
             list_pool.append(tempNL)
         except:
             print(f"Could not load {n}")
+            output = "Loading failed"
+    
+    print(output)
 
 
 def lists_hub():
@@ -61,23 +74,29 @@ def lists_hub():
         print("[2] View List")
         print("[3] Create/Edit List")
         print("[-1] Exit")
-        choice = int(input())
-        match choice:
-            case 1:
-                list_lists()
-            case 2:
-                view_list()
-            case 3:
-                edit_list()
-            case -1:
-                return
+        try:
+            choice = int(input())
+            match choice:
+                case 1:
+                    list_lists()
+                case 2:
+                    view_list()
+                case 3:
+                    edit_list()
+                case -1:
+                    return
+        except:
+            print("\n" + "Invalid input")
 
 
 def list_lists():
     print()
+    print("Lists:")
     if len(list_pool) == 0:
         print("Nothing to show")
+
     for l in list_pool:
+        
         print(l.name)
 
 
@@ -91,7 +110,7 @@ def view_list():
             l.sort()
             break
     else:
-        print("List name invalid")
+        print("\n" + "List name invalid")
 
 
 def edit_list():
@@ -117,30 +136,33 @@ def edit_list():
         print("[3] Move Node")
         print("[4] Remove Node")
         print("[-1] Exit")
-        choice = int(input())
-        match choice:
-            case 1:
-                selList.addNode(get_node_for_list())
-            case 2:
-                # selNode = get_node_for_list()
-                selList.addNode(get_node_for_list())
-                selList.moveNode(len(selList.nodes) - 1, int(input("Pos: ")))
-            case 3:
-                selList.moveNode(int(input("Old Pos: ")), int(input("New Pos: ")))
-            case 4:
-                print("Please enter the name of the node")
-                name = input()
-                for node in NodeList.NodeList.nodePool:
-                    if node.name == name:
-                        selList.removeNode(node)
-                        break
-                else:
-                    print("Node not found")
-            case -1:
-                selList.updateFile()
-                return
-        print("New List:")
-        selList.updateFile()
+        try:
+            choice = int(input())
+            match choice:
+                case 1:
+                    selList.addNode(get_node_for_list())
+                case 2:
+                    # selNode = get_node_for_list()
+                    selList.addNode(get_node_for_list())
+                    selList.moveNode(len(selList.nodes) - 1, int(input("Pos: ")))
+                case 3:
+                    selList.moveNode(int(input("Old Pos: ")), int(input("New Pos: ")))
+                case 4:
+                    print("Please enter the name of the node")
+                    name = input()
+                    for node in NodeList.NodeList.nodePool:
+                        if node.name == name:
+                            selList.removeNode(node)
+                            break
+                    else:
+                        print("Node not found")
+                case -1:
+                    selList.updateFile()
+                    return
+            print("New List:")
+            selList.updateFile()
+        except:
+            print("\n" + "Invalid input")
 
 
 def get_node_for_list():
@@ -180,23 +202,28 @@ def nodes_hub():
         print("[2] View Node")
         print("[3] Create/Edit Node")
         print("[-1] Exit")
-        choice = int(input())
-        match choice:
-            case 1:
-                list_nodes()
-            case 2:
-                view_node()
-            case 3:
-                edit_node()
-            case -1:
-                return
+        try:
+            choice = int(input())
+            match choice:
+                case 1:
+                    list_nodes()
+                case 2:
+                    view_node()
+                case 3:
+                    edit_node()
+                case -1:
+                    return
+        except:
+            print("\n" + "Invalid input")
 
 
 def list_nodes():
     print()
+    print("Nodes")
 
     if len(NodeList.NodeList.nodePool) == 0:
         print("Nothing to show")
+    
     for node in NodeList.NodeList.nodePool:
         print(node.name)
 
@@ -206,6 +233,9 @@ def view_node():
 
     print("Please input the name of the node")
     nodeName = input()
+
+    print()
+
     for n in NodeList.NodeList.nodePool:
         if n.name == nodeName:
             print(n)
@@ -251,26 +281,29 @@ def edit_node():
         print("[4] Change Relative Time")
         print("[5] Change Absolute Time")
         print("[-1] Exit")
-        choice = int(input())
-        match choice:
-            case 1:
-                selNode.notes = input("New description: ")
-            case 2:
-                selNode.completable = input("Completable(no, perc, count): ")
-            case 3:
-                selNode.completion = int(input("Amount Completed: "))
-            case 4:
-                selNode.setRelativeTime(int(input("Hours till(negative if untimed): ")), int(input("Mins till(negative if untimed): ")), int(input("Secs till(negative if untimed): ")))
-            case 5:
-                selNode.time_hour = int(input("Hours till(negative if untimed): "))
-                selNode.time_min = int(input("Mins till(negative if untimed): "))
-                selNode.time_sec = int(input("Secs till(negative if untimed): "))
-                selNode.reformat_time()
-            case -1:
-                selNode.updateFile()
-                return
-        print("New Node:")
-        selNode.updateFile()
+        try:
+            choice = int(input())
+            match choice:
+                case 1:
+                    selNode.notes = input("New description: ")
+                case 2:
+                    selNode.completable = input("Completable(no, perc, count): ")
+                case 3:
+                    selNode.completion = int(input("Amount Completed: "))
+                case 4:
+                    selNode.setRelativeTime(int(input("Hours till(negative if untimed): ")), int(input("Mins till(negative if untimed): ")), int(input("Secs till(negative if untimed): ")))
+                case 5:
+                    selNode.time_hour = int(input("Hours till(negative if untimed): "))
+                    selNode.time_min = int(input("Mins till(negative if untimed): "))
+                    selNode.time_sec = int(input("Secs till(negative if untimed): "))
+                    selNode.reformat_time()
+                case -1:
+                    selNode.updateFile()
+                    return
+            print("New Node:")
+            selNode.updateFile()
+        except:
+            print("\n" + "Invalid input")
 
 
 # def create_node(name, notes, lists, shared, completable, completion, time_hour, time_min, time_sec, dateRules):
