@@ -3,7 +3,7 @@ for ChabotHack2024
 
 by Chong Su, Ronan Wong, Gideon Tong, and Matthew Denau
 
-Our project idea is a chore tracker app that allows user to sync up shared chores with others in their household. 
+Our project idea is a task tracker app for chores that allows user to sync up shared chores with others in their household. 
 It functions as a calendar that facilitates setting reminders and notes for specific dates.
 
 Although we didn't finish the project, we currently have a command line interface that allows for the user to view and edit lists and items using the file system.
