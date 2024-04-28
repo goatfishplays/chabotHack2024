@@ -18,10 +18,10 @@ Allows the user to view and edit Lists and Nodes. Adding and removing Nodes from
 A Figma Mockup of the homepage on Android.
 
 #### NodesList - Folder
-Examples of Lists that contain Nodes in the Node Folder
+Save location for lists
 
 #### Node - Folder
-Examples of chores and items that are in Lists
+Save location for nodes
 
 #### NodesList.py
 #### Nodes.py
